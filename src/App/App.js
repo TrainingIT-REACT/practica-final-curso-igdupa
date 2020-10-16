@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Albums from './Albums';
+import Album from './Album';
 
 // Css
 import './App.css';
@@ -30,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Plantilla de la práctica final!</h1>
+        {/*<h1>Plantilla de la práctica final!</h1>
         <p>
           Esta plantilla contiene todo lo necesario para comenzar a
           desarrollar la práctica final. Antes de comenzar a desarrollar,
@@ -52,7 +54,9 @@ class App extends Component {
         <p>
           No olvides pasarte por el foro si tienes alguna duda sobre la práctica final
           o la plantilla :).
-        </p>
+        </p>*/}
+        <Album></Album>
+        <Albums></Albums>
       </div>
     );
   }
