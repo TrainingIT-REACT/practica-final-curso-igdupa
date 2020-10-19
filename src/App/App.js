@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Albums from './Albums';
-import Album from './Album';
+import Menu from './Menu';
 
 // Css
 import './App.css';
@@ -55,8 +54,7 @@ class App extends Component {
           No olvides pasarte por el foro si tienes alguna duda sobre la práctica final
           o la plantilla :).
         </p>*/}
-        <Album></Album>
-        <Albums></Albums>
+        <Menu />
       </div>
     );
   }

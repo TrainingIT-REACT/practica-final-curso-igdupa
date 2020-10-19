@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-
+import { Link } from "react-router-dom";
 
 class Albums extends Component {
     constructor(props) {
@@ -46,7 +46,7 @@ class Albums extends Component {
                     >
                         {this.state.albums.map(
                             album =>
-                                <Grid key={album.id} item xs={12} sm={6} lg={4}>
+                                <Grid key={album.id} item xs={12} sm={6} lg={4} component={Link} to={`/album/${album.id}`}>
                                     <Card style={{ minWidth: 200, maxWidth: 400, }}>
                                         <CardActionArea>
                                             <CardMedia
