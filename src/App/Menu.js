@@ -15,10 +15,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
+import AlbumIcon from '@material-ui/icons/Album';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Albums from './Albums';
-import Album from './Album';
+import AlbumSongs from './AlbumSongs';
 
 const drawerWidth = 240;
 
@@ -145,18 +145,18 @@ export default function MiniDrawer() {
                     <Divider />
                     <List>
                         <ListItem button component={Link} to={'/'}>
-                            <ListItemIcon><MailIcon /></ListItemIcon>
+                            <ListItemIcon><AlbumIcon /></ListItemIcon>
                             <ListItemText primary={'Álbums'} />
                         </ListItem>
                     </List>
                     <Divider />
                 </Drawer>
                 <main className={classes.content}>
-
+                    <div className={classes.toolbar} />
+                    <Route path="/" exact component={Albums} />
+                    <Route path="/album/:id([0-9]*)" exact component={AlbumSongs} />
                 </main>
             </div>
-            <Route path="/" exact component={Albums} />
-            <Route path="/album/:id([0-9]*)" exact component={Album} />
         </Router>
     );
 }

@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import { Link } from "react-router-dom";
+import Album from "./Album";
+import Loading from './Loading';
 
 class Albums extends Component {
     constructor(props) {
@@ -35,7 +32,7 @@ class Albums extends Component {
         return (
             <>
                 { this.state.loading ?
-                    <p>Cargando...</p>
+                    <Loading />
                     :
                     <Grid
                         container
@@ -46,24 +43,8 @@ class Albums extends Component {
                     >
                         {this.state.albums.map(
                             album =>
-                                <Grid key={album.id} item xs={12} sm={6} lg={4} component={Link} to={`/album/${album.id}`}>
-                                    <Card style={{ minWidth: 200, maxWidth: 400, }}>
-                                        <CardActionArea>
-                                            <CardMedia
-                                                image={album.cover}
-                                                title={album.name}
-                                                style={{ height: 200 }}
-                                            />
-                                            <CardContent>
-                                                <Typography gutterBottom variant="h5" component="h2">
-                                                    {album.name}
-                                                </Typography>
-                                                <Typography variant="body2" color="textSecondary" component="p">
-                                                    {album.artist}
-                                                </Typography>
-                                            </CardContent>
-                                        </CardActionArea>
-                                    </Card>
+                                <Grid key={album.id} item xs={12} sm={8} lg={4} component={Link} to={`/album/${album.id}`} style={{ textDecoration: 'none' }}>
+                                    <Album album={album} />
                                 </Grid>
                         )
                         }
