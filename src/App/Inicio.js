@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -60,9 +61,9 @@ const Inicio = () => {
                     >
                         {songs.map(
                             song =>
-                                <Grid item xs={12} sm={6} lg={3}>
+                                <Grid key={`${song.id}`} item xs={12} sm={6} lg={3}>
                                     <List>
-                                        <Song key={`${song.id}`} song={song} />
+                                        <Song song={song} />
                                     </List>
                                 </Grid>,
                         )
@@ -86,8 +87,8 @@ const Inicio = () => {
                     >
                         {albums.map(
                             album =>
-                                <Grid item xs={12} sm={6} lg={3}>
-                                    <Album key={`${album.id}`} album={album} />
+                                <Grid key={`${album.id}`} item xs={12} sm={6} lg={3} component={Link} to={`/album/${album.id}`} style={{ textDecoration: 'none' }}>
+                                    <Album album={album} />
                                 </Grid>,
                         )
                         }

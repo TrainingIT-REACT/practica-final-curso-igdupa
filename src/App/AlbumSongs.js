@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import Song from './Song';
 import Album from './Album';
 import Loading from './Loading';
+import { connect } from 'react-redux';
 
-const AlbumSongs = ({ match }) => {
+// Acciones
+import { addSongs, clearPlaylist } from './actions/playlist';
+
+const AlbumSongs = ({ match, addSongs, clearPlaylist }) => {
     const [loading, setLoading] = useState(true);
     const [songs, setSongs] = useState([{}]);
     const [album, setAlbum] = useState([{}]);
@@ -37,6 +42,10 @@ const AlbumSongs = ({ match }) => {
         fetchAlbumAPI()
     }, []);
 
+    const play = () => {
+        clearPlaylist();
+        addSongs(songs);
+    }
 
     return (
         <>
@@ -53,7 +62,9 @@ const AlbumSongs = ({ match }) => {
                     <Grid item xs={12} sm={12} lg={4}>
                         <Album album={album} />
                     </Grid>
+
                     <Grid item xs={12} sm={12} lg={8}>
+                        <Button variant="contained" onClick={play}>Reproducir todo</Button>
                         <List>
                             {songs.map(
                                 song =>
@@ -69,4 +80,15 @@ const AlbumSongs = ({ match }) => {
 
 }
 
-export default AlbumSongs;
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        props,
+        addSongs: (songs) => dispatch(addSongs(songs)),
+        clearPlaylist: () => dispatch(clearPlaylist()),
+    }
+};
+
+export default connect(
+    () => ({}),
+    mapDispatchToProps,
+)(AlbumSongs);

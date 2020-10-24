@@ -19,6 +19,7 @@ import AlbumIcon from '@material-ui/icons/Album';
 import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import LockIcon from '@material-ui/icons/Lock';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Albums from './Albums';
 import AlbumSongs from './AlbumSongs';
@@ -27,7 +28,8 @@ import Login from './Login';
 import UserContext from './contexts/user';
 import Admin from './Admin';
 import PrivateRoute from './PrivateRoute';
-import LockIcon from '@material-ui/icons/Lock';
+import Media from './Media';
+
 
 const drawerWidth = 240;
 
@@ -79,13 +81,20 @@ const useStyles = makeStyles((theme) => ({
             width: theme.spacing(9) + 1,
         },
     },
-    toolbar: {
+    toolbarIco: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        padding: theme.spacing(0, 1),
+        padding: theme.spacing(4, 1),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
+        height: 80,
+    },
+    toolbar: {
+        height: 80,
+    },
+    title: {
+        width: '100%',
     },
     content: {
         flexGrow: 1,
@@ -125,7 +134,7 @@ export default function Menu() {
                             [classes.appBarShift]: open,
                         })}
                     >
-                        <Toolbar>
+                        <Toolbar className={classes.toolbar}>
                             <IconButton
                                 color="inherit"
                                 aria-label="open drawer"
@@ -135,11 +144,14 @@ export default function Menu() {
                                     [classes.hide]: open,
                                 })}
                             >
-                                <MenuIcon />
+                            <MenuIcon />
                             </IconButton>
-                            <Typography variant="h6" noWrap>
-                                Reactify
-                    </Typography>
+                            <div className={classes.title}>
+                                <Typography variant="h6" noWrap>
+                                    Reactify
+                                </Typography>
+                            </div>
+                            <Media />
                         </Toolbar>
                     </AppBar>
                     <Drawer
@@ -155,7 +167,7 @@ export default function Menu() {
                             }),
                         }}
                     >
-                        <div className={classes.toolbar}>
+                        <div className={classes.toolbarIco}>
                             <IconButton onClick={handleDrawerClose}>
                                 {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                             </IconButton>

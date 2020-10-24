@@ -13,7 +13,7 @@
   ],
   "songs": [
     { "id": 1, "name": "Take On Me", "audio": "/music/funky_energy_loop.mp3", "seconds": 203, "album_id": 1 },
-    { "id": 2, "name": "S.O.S.", "audio": "/music/funky_energy_loop.mp3", "seconds": 203, "album_id": 1 },
+    { "id": 2, "name": "S.O.S.", "audio": "/music/funky_energy_loop_2.mp3", "seconds": 203, "album_id": 1 },
     { "id": 3, "name": "Mamma Mia", "audio": "/music/funky_energy_loop.mp3", "seconds": 203, "album_id": 1 },
     { "id": 4, "name": "Waterloo", "audio": "/music/funky_energy_loop.mp3", "seconds": 203, "album_id": 1 },
     { "id": 5, "name": "I Do, I Do, I Do, I Do, I Do", "audio": "/music/funky_energy_loop.mp3", "seconds": 203, "album_id": 1 },
