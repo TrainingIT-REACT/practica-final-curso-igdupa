@@ -3,6 +3,7 @@ const actions = [
   // Playlist
   "ADD_SONGS",
   "CLEAR_PLAYLIST",
+  "CHANGE_POSITION",
 
   // Usuarios
   "UPDATE_NAME"

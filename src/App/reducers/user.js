@@ -2,15 +2,23 @@ import types from '../actions/types';
 
 // Estado inicial
 const initialState = {
-  name: ""
+  user: {
+    name: "",
+    user: "admin",
+    pass: "1234",
+  }
 }
 
 // Implementamos el reducer
 const reducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case types.UPDATE_NAME:
       return {
-        name: action.name
+        user: {
+          name: action.name,
+          user: state.user.user,
+          pass: state.user.pass,
+        }
       };
     default:
       return state;

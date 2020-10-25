@@ -30,6 +30,7 @@ import Admin from './Admin';
 import PrivateRoute from './PrivateRoute';
 import Media from './Media';
 
+import { connect } from 'react-redux';
 
 const drawerWidth = 240;
 
@@ -102,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Menu() {
+function Menu({userRedux}) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
@@ -144,11 +145,11 @@ export default function Menu() {
                                     [classes.hide]: open,
                                 })}
                             >
-                            <MenuIcon />
+                                <MenuIcon />
                             </IconButton>
                             <div className={classes.title}>
                                 <Typography variant="h6" noWrap>
-                                    Reactify
+                                    Reactify {userRedux.name && `de ${userRedux.name}`}
                                 </Typography>
                             </div>
                             <Media />
@@ -209,3 +210,13 @@ export default function Menu() {
         </Router>
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userRedux: state.user.user
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(Menu);

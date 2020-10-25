@@ -8,3 +8,8 @@ export const addSongs = (songs) => ({
 export const clearPlaylist = () => ({
   type: types.CLEAR_PLAYLIST
 });
+
+export const changePosition = (position) => ({
+  type: types.CHANGE_POSITION,
+  position
+});

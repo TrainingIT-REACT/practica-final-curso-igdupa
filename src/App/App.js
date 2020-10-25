@@ -1,5 +1,5 @@
-import React from 'react';
-import Menu from './Menu';
+import React, { Suspense } from 'react';
+import Loading from './Loading';
 
 // Css
 import './App.css';
@@ -7,11 +7,15 @@ import './App.css';
 import { Provider } from 'react-redux';
 import store from './store';
 
+const Menu = React.lazy(() => import('./Menu'));
+
 const App = () => (
   <div className="App">
-    <Provider store={store}>
-      <Menu />
-    </Provider>
+    <Suspense fallback={<Loading />}>
+      <Provider store={store}>
+        <Menu />
+      </Provider>
+    </Suspense>
   </div>
 );
 

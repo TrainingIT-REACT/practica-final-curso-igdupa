@@ -16,35 +16,28 @@ const AlbumSongs = ({ match, addSongs, clearPlaylist }) => {
     const [album, setAlbum] = useState([{}]);
 
     useEffect(() => {
-        async function fetchSongsAPI() {
-            try {
-                const res = await fetch(`/songs?album_id=${match.params.id}`);
-                const json = await res.json();
-                setLoading(false);
-                setSongs(json);
-            } catch (err) {
-                console.error("Error accediendo al servidor", err);
-            }
-        }
-
         async function fetchAlbumAPI() {
             try {
-                const res = await fetch(`/albums?id=${match.params.id}`);
+                const res = await fetch(`/albums?id=${match.params.id}&_embed=songs`);
                 const json = await res.json();
                 setLoading(false);
                 setAlbum(json[0]);
+                setSongs(json[0].songs);
             } catch (err) {
                 console.error("Error accediendo al servidor", err);
             }
         }
-
-        fetchSongsAPI()
         fetchAlbumAPI()
     }, []);
 
     const play = () => {
         clearPlaylist();
-        addSongs(songs);
+        songs.forEach(
+            song => {
+                Object.assign(song, { album: album });
+                addSongs(song);
+            }
+        )
     }
 
     return (
@@ -68,7 +61,7 @@ const AlbumSongs = ({ match, addSongs, clearPlaylist }) => {
                         <List>
                             {songs.map(
                                 song =>
-                                    <Song key={`${song.id}`} song={song}></Song>,
+                                    <Song key={`${song.id}`} song={song} album={album}></Song>,
                             )
                             }
                         </List>

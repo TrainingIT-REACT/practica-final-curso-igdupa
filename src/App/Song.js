@@ -18,7 +18,9 @@ const Song = ({ props, addSongs, clearPlaylist }) => {
 
     const play = () => {
         clearPlaylist();
-        addSongs(props.song);
+        var song = props.song;
+        Object.assign(song, { album: props.album });
+        addSongs(song);
     }
 
     return (
@@ -32,7 +34,7 @@ const Song = ({ props, addSongs, clearPlaylist }) => {
                     </ListItemAvatar>
                     <ListItemText
                         primary={props.song.name}
-                        secondary={"Duración: " + props.song.seconds + " segundos."}
+                        secondary={props.album && <>{`Album: ${props.album.name}`} <br /> {`Artista: ${props.album.artist}`}</>}
                     />
                     <ListItemSecondaryAction onClick={play}>
                         <IconButton edge="end" aria-label="play">
