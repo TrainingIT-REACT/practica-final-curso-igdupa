@@ -20,6 +20,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Albums from './Albums';
 import AlbumSongs from './AlbumSongs';
@@ -29,8 +30,10 @@ import UserContext from './contexts/user';
 import Admin from './Admin';
 import PrivateRoute from './PrivateRoute';
 import Media from './Media';
+import ListPlayer from './ListPlayer';
 
 import { connect } from 'react-redux';
+import { red } from '@material-ui/core/colors';
 
 const drawerWidth = 240;
 
@@ -86,16 +89,16 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        padding: theme.spacing(4, 1),
+        padding: theme.spacing(0, 2),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
-        height: 80,
+        height: 40,
     },
     toolbar: {
-        height: 80,
+        height: 40,
     },
     title: {
-        width: '100%',
+        //width: '100%',
     },
     content: {
         flexGrow: 1,
@@ -152,7 +155,7 @@ function Menu({userRedux}) {
                                     Reactify {userRedux.name && `de ${userRedux.name}`}
                                 </Typography>
                             </div>
-                            <Media />
+                            
                         </Toolbar>
                     </AppBar>
                     <Drawer
@@ -183,6 +186,10 @@ function Menu({userRedux}) {
                                 <ListItemIcon><AlbumIcon /></ListItemIcon>
                                 <ListItemText primary={'Álbums'} />
                             </ListItem>
+                            <ListItem button component={Link} to={'/listplayer'}>
+                                <ListItemIcon><ListAltIcon /></ListItemIcon>
+                                <ListItemText primary={'Lista reproducción'} />
+                            </ListItem>
                         </List>
                         <Divider />
                         <List>
@@ -199,9 +206,11 @@ function Menu({userRedux}) {
                     </Drawer>
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
+                        <Media />
                         <Route path="/" exact component={Inicio} />
                         <Route path="/albums" exact component={Albums} />
                         <Route path="/album/:id([0-9]*)" exact component={AlbumSongs} />
+                        <Route path="/listplayer" exact component={ListPlayer} />
                         <Route path="/login" exact component={Login} />
                         <PrivateRoute path="/user" component={Admin} />
                     </main>
