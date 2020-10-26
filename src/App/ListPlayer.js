@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 
 const ListPlayer = ({ media }) => {
     const classes = useStyles();
+
     return (
         <>
             <Typography variant="h4" component="h5">
@@ -29,11 +30,24 @@ const ListPlayer = ({ media }) => {
             <br />
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell><b>Canción</b></TableCell>
+                            <TableCell><b>Album</b></TableCell>
+                            <TableCell><b>Artista</b></TableCell>
+                        </TableRow>
+                    </TableHead>
                     <TableBody>
-                        {media.list.map((song) => (
-                            <TableRow key={song.id}>
+                        {media.list.map((song, index) => (
+                            <TableRow key={song.id} selected={(index === media.position) ? true : false}>
                                 <TableCell component="th" scope="row">
                                     {song.name}
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {song.album.name}
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {song.album.artist}
                                 </TableCell>
                             </TableRow>
                         ))}
